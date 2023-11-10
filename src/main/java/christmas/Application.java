@@ -1,11 +1,10 @@
 package christmas;
 
-import christmas.constant.Phrase;
-import christmas.view.Input;
+import christmas.launcher.EventPlannerLauncher;
 
 public class Application {
     public static void main(String[] args) {
-        System.out.println(Phrase.WELCOME);
-        Input.readDate();
+        EventPlannerLauncher eventPlannerLauncher = new EventPlannerLauncher();
+        eventPlannerLauncher.run();
     }
 }
