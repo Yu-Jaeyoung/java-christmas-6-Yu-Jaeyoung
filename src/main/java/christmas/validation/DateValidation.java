@@ -1,12 +1,12 @@
 package christmas.validation;
 
-import christmas.exception.Exception;
+import christmas.exception.DateException;
 
 public class DateValidation {
     public static void validate(final String input) {
-        Exception.blank(input);
-        Exception.containsBlank(input);
-        Exception.notANumber(input);
-        Exception.notInRange(input);
+        DateException.blank(input);
+        DateException.containsBlank(input);
+        DateException.notANumber(input);
+        DateException.notInRange(input);
     }
 }
