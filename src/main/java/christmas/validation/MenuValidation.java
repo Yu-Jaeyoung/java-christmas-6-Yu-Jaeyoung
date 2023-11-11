@@ -9,7 +9,6 @@ public class MenuValidation {
         MenuException.containsBlank(input);
         MenuException.nothingBeforeComma(input);
         MenuException.nothingAfterComma(input);
-        MenuException.noNumberBeforeComma(input);
         MenuException.noHyphen(input);
     }
 

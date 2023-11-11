@@ -18,12 +18,6 @@ public class MenuException extends Exception {
         }
     }
 
-    public static void noNumberBeforeComma(final String input) {
-        if (input.contains(",") && !input.matches("\\d{1,2},")) {
-            throw new IllegalArgumentException("[ERROR] , 앞에 숫자가 없음");
-        }
-    }
-
     public static void noHyphen(final String input) {
         if (!input.contains("-")) {
             throw new IllegalArgumentException("[ERROR] 메뉴 개수가 없음");
@@ -83,7 +77,7 @@ public class MenuException extends Exception {
 
     public static void notInRangeNumber(final String input) {
         if (!input.matches("([1-9]|1[0-9]|20)")) {
-            throw new IllegalArgumentException("[ERROR] - 뒤에 숫자 입력이 1 이상 20 이하가 아님");
+            throw new IllegalArgumentException("[ERROR] - 뒤에 입력이 숫자 1 이상 20 이하가 아님");
         }
     }
 }
