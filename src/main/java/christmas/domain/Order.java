@@ -3,12 +3,20 @@ package christmas.domain;
 import christmas.constant.Menu;
 import christmas.util.Parser;
 import christmas.util.Splitter;
+import christmas.view.OutputView;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Order {
-    public static Map<Menu, Integer> orderHistory(final String input) {
+    private final Map<Menu, Integer> orderHistory;
+
+    public Order(final String menus) {
+        this.orderHistory = orderHistory(menus);
+    }
+
+    private Map<Menu, Integer> orderHistory(final String input) {
         final Map<Menu, Integer> orderHistory = new HashMap<>();
         final String[] menuWithCount = Splitter.splitWithComma(input);
 
@@ -18,5 +26,37 @@ public class Order {
         }
 
         return orderHistory;
+    }
+
+    public final Map<Menu, Integer> getOrderHistory() {
+        return Collections.unmodifiableMap(this.orderHistory);
+    }
+
+    public final int getMainQuantity() {
+        int mainQuantity = 0;
+
+        for (final Map.Entry<Menu, Integer> menu : this.orderHistory.entrySet()) {
+            if (menu.getKey().getCourse().equals("main")) {
+                mainQuantity += menu.getValue();
+            }
+        }
+
+        return mainQuantity;
+    }
+
+    public final int getDessertQuantity() {
+        int dessertQuantity = 0;
+
+        for (final Map.Entry<Menu, Integer> menu : this.orderHistory.entrySet()) {
+            if (menu.getKey().getCourse().equals("dessert")) {
+                dessertQuantity += menu.getValue();
+            }
+        }
+
+        return dessertQuantity;
+    }
+
+    public final void orderMenuView() {
+        OutputView.orderMenu(this.orderHistory);
     }
 }
