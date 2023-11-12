@@ -61,6 +61,22 @@ public class MenuException extends Exception {
         }
     }
 
+    public static void onlyBeverage(final String[] input) {
+        boolean found = false;
+
+        for (final String menu : input) {
+            final String[] order = Splitter.splitWithHyphen(menu);
+            if (!order[0].equals("beverage")) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없음");
+        }
+    }
+
     public static void notInMenu(final String input) {
         boolean found = false;
 
@@ -73,21 +89,6 @@ public class MenuException extends Exception {
 
         if (!found) {
             throw new IllegalArgumentException("[ERROR] 없는 메뉴");
-        }
-    }
-
-    public static void onlyBeverage(final String input) {
-        boolean found = false;
-
-        for (final Menu menu : Menu.values()) {
-            if (menu.getMenuName().equals(input) && !menu.getCourse().equals("beverage")) {
-                found = true;
-                break;
-            }
-        }
-
-        if (!found) {
-            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없음");
         }
     }
 

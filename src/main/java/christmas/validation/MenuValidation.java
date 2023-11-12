@@ -24,11 +24,11 @@ public class MenuValidation {
         final String[] menus = Splitter.splitWithComma(input);
 
         MenuException.duplicatedMenu(menus);
+        MenuException.onlyBeverage(menus);
 
         for (final String menu : menus) {
             final String[] order = Splitter.splitWithHyphen(menu);
             MenuException.notInMenu(order[0]);
-            MenuException.onlyBeverage(order[0]);
             MenuException.notInRangeNumber(order[1]);
         }
     }
