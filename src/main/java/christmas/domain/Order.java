@@ -3,7 +3,7 @@ package christmas.domain;
 import christmas.constant.Menu;
 import christmas.util.Parser;
 import christmas.util.Splitter;
-import christmas.view.OutputView;
+import christmas.view.output.OutputView;
 
 import java.util.Collections;
 import java.util.HashMap;
