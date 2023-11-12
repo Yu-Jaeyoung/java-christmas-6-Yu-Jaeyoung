@@ -1,15 +1,11 @@
 package christmas.controller;
 
-import christmas.constant.Menu;
-import christmas.domain.Order;
 import christmas.validation.MenuValidation;
 import christmas.view.ExceptionView;
 import christmas.view.InputView;
 
-import java.util.Map;
-
 public class MenuController {
-    public static Map<Menu, Integer> readMenus() {
+    public static String readMenus() {
         final String menus = InputView.readMenus();
 
         try {
@@ -22,6 +18,6 @@ public class MenuController {
             return readMenus();
         }
 
-        return Order.orderHistory(menus);
+        return menus;
     }
 }
