@@ -2,6 +2,7 @@ package christmas.exception;
 
 import christmas.constant.Menu;
 import christmas.util.Splitter;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -72,6 +73,21 @@ public class MenuException extends Exception {
 
         if (!found) {
             throw new IllegalArgumentException("[ERROR] 없는 메뉴");
+        }
+    }
+
+    public static void onlyBeverage(final String input) {
+        boolean found = false;
+
+        for (final Menu menu : Menu.values()) {
+            if (menu.getMenuName().equals(input) && !menu.getCourse().equals("beverage")) {
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없음");
         }
     }
 

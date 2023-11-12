@@ -28,6 +28,7 @@ public class MenuValidation {
         for (final String menu : menus) {
             final String[] order = Splitter.splitWithHyphen(menu);
             MenuException.notInMenu(order[0]);
+            MenuException.onlyBeverage(order[0]);
             MenuException.notInRangeNumber(order[1]);
         }
     }
