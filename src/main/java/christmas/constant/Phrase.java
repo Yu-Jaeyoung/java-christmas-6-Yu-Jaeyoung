@@ -14,4 +14,12 @@ public final class Phrase {
     public static final String BENEFIT_COST = "\n<총혜택 금액>";
     public static final String EVENT_BADGE = "\n<12월 이벤트 배지>";
     public static final String NOTHING = "없음\n";
+    public static final String WEEKDAY_DISCOUNT = "평일 할인: ";
+    public static final String WEEKEND_DISCOUNT = "주말 할인: ";
+    public static final String SPECIAL_DISCOUNT = "특별 할인: ";
+    public static final String CHRISTMAS_DISCOUNT = "크리스마스 디데이 할인: ";
+    public static final String FREE_GIFT_EVENT = "증정 이벤트: ";
+    public static final String EVENT_BADGE_SANTA = "산타";
+    public static final String EVENT_BADGE_TREE = "트리";
+    public static final String EVENT_BADGE_STAR = "별";
 }
