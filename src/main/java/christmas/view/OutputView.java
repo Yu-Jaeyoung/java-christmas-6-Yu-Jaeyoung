@@ -23,4 +23,14 @@ public class OutputView {
         System.out.println(Phrase.TOTAL_COST_BEFORE_DISCOUNT);
         System.out.println(Formatter.decimalFormatter(totalCost) + "원");
     }
+
+    public static void freeGift() {
+        System.out.println(Phrase.FREE_GIFT);
+        System.out.println(Phrase.FREE_GIFT_MENU);
+    }
+
+    public static void noFreeGift() {
+        System.out.println(Phrase.FREE_GIFT);
+        System.out.println(Phrase.NOTHING);
+    }
 }
