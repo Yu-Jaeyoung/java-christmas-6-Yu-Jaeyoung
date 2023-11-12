@@ -12,6 +12,10 @@ public final class Calendar {
         this.date = date;
     }
 
+    public int getDate() {
+        return date;
+    }
+
     public final boolean isWeekend() {
         return weekend.contains(this.date);
     }
