@@ -21,20 +21,20 @@ public class OutputView {
 
     public static void freeGift() {
         System.out.println(Phrase.FREE_GIFT);
-        System.out.println(Phrase.FREE_GIFT_MENU);
+        System.out.print(Phrase.FREE_GIFT_MENU);
     }
 
     public static void noFreeGift() {
         System.out.println(Phrase.FREE_GIFT);
-        System.out.println(Phrase.NOTHING);
+        System.out.print(Phrase.NOTHING);
     }
 
     public static void noBenefit(final int totalCost) {
-        System.out.println(Phrase.BENEFIT + "\n" + Phrase.NOTHING);
+        System.out.print(Phrase.NOTHING);
         System.out.println(Phrase.BENEFIT_COST + "\n0원");
         System.out.println(Phrase.TOTAL_COST_AFTER_DISCOUNT);
-        System.out.println(Formatter.decimalFormatter(totalCost) + "원\n");
-        System.out.println(Phrase.EVENT_BADGE + "\n" + Phrase.NOTHING);
+        System.out.println(Formatter.decimalFormatter(totalCost) + "원");
+        System.out.print(Phrase.EVENT_BADGE + "\n" + Phrase.NOTHING);
     }
 
     public static void benefitCost(final int discount) {
@@ -44,17 +44,17 @@ public class OutputView {
 
     public static void eventBadge(final int discount) {
         if (discount >= 20_000) {
-            System.out.println(Phrase.EVENT_BADGE + "\n" + Phrase.EVENT_BADGE_SANTA);
+            System.out.print(Phrase.EVENT_BADGE + "\n" + Phrase.EVENT_BADGE_SANTA);
             return;
         }
         if (discount >= 10_000) {
-            System.out.println(Phrase.EVENT_BADGE + "\n" + Phrase.EVENT_BADGE_TREE);
+            System.out.print(Phrase.EVENT_BADGE + "\n" + Phrase.EVENT_BADGE_TREE);
             return;
         }
         if (discount >= 5_000) {
-            System.out.println(Phrase.EVENT_BADGE + "\n" + Phrase.EVENT_BADGE_STAR);
+            System.out.print(Phrase.EVENT_BADGE + "\n" + Phrase.EVENT_BADGE_STAR);
             return;
         }
-        System.out.println(Phrase.EVENT_BADGE + "\n" + Phrase.NOTHING);
+        System.out.print(Phrase.EVENT_BADGE + "\n" + Phrase.NOTHING);
     }
 }
