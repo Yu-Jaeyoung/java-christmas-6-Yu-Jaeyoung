@@ -1,23 +1,15 @@
 package christmas.controller;
 
-import christmas.validation.MenuValidation;
-import christmas.view.ExceptionView;
-import christmas.view.InputView;
+import christmas.domain.Order;
 
-public class MenuController {
-    public static String readMenus() {
-        final String menus = InputView.readMenus();
+public class OrderController {
+    private final Order order;
 
-        try {
-            MenuValidation.validate(menus);
-            MenuValidation.validateAfterSplitWithComma(menus);
-            MenuValidation.validateAfterSplitWithHyphen(menus);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            ExceptionView.exceptionMessage(illegalArgumentException.getMessage());
+    public OrderController(final String order) {
+        this.order = new Order(order);
+    }
 
-            return readMenus();
-        }
-
-        return menus;
+    public final Order getOrder() {
+        return order;
     }
 }

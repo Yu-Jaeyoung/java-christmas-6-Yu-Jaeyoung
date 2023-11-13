@@ -1,23 +1,15 @@
 package christmas.controller;
 
-import christmas.util.Parser;
-import christmas.validation.DateValidation;
-import christmas.view.ExceptionView;
-import christmas.view.InputView;
+import christmas.domain.Calendar;
 
 public class DateController {
-    public static int readDate() {
-        final String date = InputView.readDate();
+    private final Calendar calendar;
 
-        try {
-            DateValidation.validate(date);
-        } catch (IllegalArgumentException illegalArgumentException) {
-            ExceptionView.exceptionMessage(illegalArgumentException.getMessage());
-
-            return readDate();
-        }
-
-        return Parser.stringToInt(date);
+    public DateController(final int date) {
+        this.calendar = new Calendar(date);
     }
 
+    public final Calendar getCalendar() {
+        return calendar;
+    }
 }
