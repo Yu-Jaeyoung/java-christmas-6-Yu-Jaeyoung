@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.constant.Discount;
 import christmas.constant.Phrase;
 import christmas.view.output.DiscountView;
 import christmas.view.output.OutputView;
@@ -15,27 +16,27 @@ public class Event {
 
     private void weekendOrDayDiscount() {
         if (calendar.isWeekend()) {
-            cost.applyWeekendDiscount();
+            cost.applyDiscount(Discount.WEEKEND);
             return;
         }
-        cost.applyWeekdayDiscount();
+        cost.applyDiscount(Discount.WEEKDAY);
     }
 
     private void specialDiscount() {
         if (calendar.isStarDay()) {
-            cost.applySpecialDiscount();
+            cost.applyDiscount(Discount.SPECIAL);
         }
     }
 
     private void christmasDiscount() {
         if (calendar.isChristmasDDay()) {
-            cost.applyChristmasDiscount(calendar.getDate());
+            cost.applyDiscount(Discount.CHRISTMAS, calendar.getDate());
         }
     }
 
     private void freeGiftDiscount() {
         if (cost.isFreeGiftTarget()) {
-            cost.applyFreeGiftDiscount();
+            cost.applyDiscount(Discount.FREE_GIFT);
         }
     }
 
