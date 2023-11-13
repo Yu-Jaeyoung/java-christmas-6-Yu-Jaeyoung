@@ -334,3 +334,29 @@
 - [ ] getter의 활용은 데이터를 꺼내는 것이 아닌 메시지를 던지도록 구조를 변경하여 활용
 
 - [ ] 필드(인스턴스 변수)의 개수를 줄이기
+
+# 셀프 코드 리뷰 / 어디를 고칠까?
+
+- Menu
+  - Menu의 price에 _ 추가하기
+  
+
+- Phrase
+  - 1회성 구문들 사용되는 곳으로 옮기기
+  
+
+- controller
+  - controller의 역할 다시 생각해보기
+  
+
+- doamin
+  - Calendar의 getDate가 적합하게 사용되었는가?
+  - Cost 클래스의 역할이 적절한가?
+  - Cost의 getter를 다른 방법으로 선언하는 법?
+  - Cost의 setter 역할을 하는 apply를 다른 방법으로 ?
+  - Cost의 discount 관련 변수를 다르게?
+  - Event의 benefitDetailView() 역할 덜기
+  
+
+- validation
+  - Date, Menu의 Validation의 역할이 올바른가?
