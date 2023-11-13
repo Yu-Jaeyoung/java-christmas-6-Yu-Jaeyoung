@@ -6,29 +6,42 @@ import christmas.util.Splitter;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MenuException extends Exception {
+public class MenuException{
+
+    public static void blank(final String input) {
+        if (input.isBlank()) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
+    public static void containsBlank(final String input) {
+        if (input.contains(" ")) {
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+        }
+    }
+
     public static void nothingBeforeComma(final String input) {
         if (input.contains(",") && input.matches("^,.*")) {
-            throw new IllegalArgumentException("[ERROR] , 앞에 입력이 없음");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
     public static void nothingAfterComma(final String input) {
         if (input.contains(",") && input.matches(".*,$")) {
-            throw new IllegalArgumentException("[ERROR] , 뒤에 입력이 없음");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
     public static void noHyphen(final String input) {
         if (!input.contains("-")) {
-            throw new IllegalArgumentException("[ERROR] 메뉴 개수가 없음");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
     public static void noHyphen(final String[] input) {
         for (final String menu : input) {
             if (!menu.contains("-")) {
-                System.out.println("[ERROR] 메뉴 개수가 없음");
+                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
     }
@@ -36,7 +49,7 @@ public class MenuException extends Exception {
     public static void nothingBeforeHyphen(final String[] input) {
         for (final String menu : input) {
             if (menu.matches("^-.*")) {
-                System.out.println("[ERROR] - 앞에 입력이 없음");
+                System.out.println("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
     }
@@ -44,7 +57,7 @@ public class MenuException extends Exception {
     public static void nothingAfterHyphen(final String[] input) {
         for (final String menu : input) {
             if (menu.matches(".*-$")) {
-                throw new IllegalArgumentException("[ERROR] - 뒤에 입력이 없음");
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
     }
@@ -56,7 +69,7 @@ public class MenuException extends Exception {
             final String[] order = Splitter.splitWithHyphen(menu);
 
             if (!set.add(order[0])) {
-                throw new IllegalArgumentException("[ERROR] 중복된 메뉴 입력");
+                throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
             }
         }
     }
@@ -73,7 +86,7 @@ public class MenuException extends Exception {
         }
 
         if (!found) {
-            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없음");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
@@ -88,13 +101,13 @@ public class MenuException extends Exception {
         }
 
         if (!found) {
-            throw new IllegalArgumentException("[ERROR] 없는 메뉴");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 
     public static void notInRangeNumber(final String input) {
         if (!input.matches("([1-9]|1[0-9]|20)")) {
-            throw new IllegalArgumentException("[ERROR] - 뒤에 입력이 숫자 1 이상 20 이하가 아님");
+            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
         }
     }
 }
