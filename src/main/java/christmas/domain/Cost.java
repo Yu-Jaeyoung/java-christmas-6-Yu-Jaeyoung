@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import christmas.constant.Menu;
+import christmas.view.output.CostView;
 
 import java.util.Map;
 
@@ -32,7 +33,15 @@ public class Cost {
         return totalCost >= 10_000;
     }
 
-    public final int getTotalCost() {
-        return totalCost;
+    public final void totalCostView() {
+        CostView.totalCostBeforeDiscount(this.totalCost);
+    }
+
+    public final void totalPayment(final int totalDiscount) {
+        if (isFreeGiftTarget()) {
+            CostView.totalCostAfterDiscount(this.totalCost + totalDiscount + 25_000);
+            return;
+        }
+        CostView.totalCostAfterDiscount(this.totalCost + totalDiscount);
     }
 }

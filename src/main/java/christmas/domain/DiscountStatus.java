@@ -7,11 +7,9 @@ import java.util.Map;
 
 public class DiscountStatus {
     private final Map<Discount, Integer> discountStatus;
-    private final Order order;
 
-    public DiscountStatus(final Order order) {
+    public DiscountStatus() {
         this.discountStatus = initializeDiscountStatus();
-        this.order = order;
     }
 
     private Map<Discount, Integer> initializeDiscountStatus() {
@@ -28,7 +26,15 @@ public class DiscountStatus {
         if (discount.equals(Discount.SPECIAL) || discount.equals(Discount.FREE_GIFT)) {
             this.discountStatus.put(discount, 1);
         }
+    }
 
+    public final void applyDiscount(final Discount discount, final int date) {
+        if (discount.equals(Discount.CHRISTMAS)) {
+            this.discountStatus.put(discount, date);
+        }
+    }
+
+    public final void applyDiscount(final Discount discount, final Order order) {
         if (discount.equals(Discount.WEEKDAY)) {
             this.discountStatus.put(discount, order.getDessertQuantity());
         }
@@ -38,14 +44,8 @@ public class DiscountStatus {
         }
     }
 
-    public final void applyDiscount(final Discount discount, final int date) {
-        if (discount.equals(Discount.CHRISTMAS)) {
-            this.discountStatus.put(discount, date);
-        }
-    }
-
     public final int getDiscount(final Discount discount) {
-        if (discount.equals(Discount.CHRISTMAS)) {
+        if (discount.equals(Discount.CHRISTMAS) && this.discountStatus.get(discount) != 0) {
             return -(100 * (this.discountStatus.get(discount) - 1) + discount.getDiscountValue());
         }
 
@@ -60,9 +60,5 @@ public class DiscountStatus {
         }
 
         return totalDiscount;
-    }
-
-    public final int totalPayment(final int totalCost) {
-        return totalCost + getTotalDiscount();
     }
 }

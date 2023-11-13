@@ -21,8 +21,11 @@ public final class Calendar {
         return starDay.contains(this.date);
     }
 
-    public boolean isChristmasDDay() {
-        return this.date < 26;
+    public int christmasDDay() {
+        if (this.date < 26) {
+            return date;
+        }
+        return 0;
     }
 
     public void eventPreview() {

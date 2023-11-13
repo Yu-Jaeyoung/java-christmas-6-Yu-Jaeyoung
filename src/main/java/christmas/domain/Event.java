@@ -1,94 +1,50 @@
 package christmas.domain;
 
 import christmas.constant.Discount;
-import christmas.constant.Phrase;
-import christmas.view.output.DiscountView;
 import christmas.view.output.OutputView;
 
 public class Event {
-    private final Calendar calendar;
     private final Cost cost;
+    private final Calendar calendar;
 
     public Event(final Calendar calendar, final Cost cost) {
         this.calendar = calendar;
         this.cost = cost;
     }
 
-    private void weekendOrDayDiscount() {
+    public final void weekendOrDayDiscount(final DiscountStatus discountStatus, final Order order) {
         if (calendar.isWeekend()) {
-            cost.applyDiscount(Discount.WEEKEND);
+            discountStatus.applyDiscount(Discount.WEEKEND, order);
             return;
         }
-        cost.applyDiscount(Discount.WEEKDAY);
+        discountStatus.applyDiscount(Discount.WEEKDAY, order);
     }
 
-    private void specialDiscount() {
+    public final void specialDiscount(final DiscountStatus discountStatus) {
         if (calendar.isStarDay()) {
-            cost.applyDiscount(Discount.SPECIAL);
+            discountStatus.applyDiscount(Discount.SPECIAL);
         }
     }
 
-    private void christmasDiscount() {
-        if (calendar.isChristmasDDay()) {
-            cost.applyDiscount(Discount.CHRISTMAS, calendar.getDate());
-        }
+    public final void christmasDiscount(final DiscountStatus discountStatus) {
+        discountStatus.applyDiscount(Discount.CHRISTMAS, calendar.christmasDDay());
     }
 
-    private void freeGiftDiscount() {
+    public final void freeGiftDiscount(final DiscountStatus discountStatus) {
         if (cost.isFreeGiftTarget()) {
-            cost.applyDiscount(Discount.FREE_GIFT);
+            discountStatus.applyDiscount(Discount.FREE_GIFT);
         }
     }
 
-    public final void eventApplier() {
-        weekendOrDayDiscount();
-        specialDiscount();
-        christmasDiscount();
-        freeGiftDiscount();
-    }
-
-    private void totalCostBeforeDiscountView() {
-        DiscountView.totalCostBeforeDiscount(cost.getTotalCost());
-    }
-
-    private void freeGiftEventView() {
+    public final void freeGiftEventView() {
         if (cost.isFreeGiftTarget()) {
             OutputView.freeGift();
             return;
         }
-
         OutputView.noFreeGift();
     }
 
-    private void totalCostAfterDiscountView() {
-        DiscountView.totalCostAfterDiscount(cost.getTotalCostAfterDiscount());
-    }
-
-    private void eventBadgeView() {
-        OutputView.eventBadge(-cost.getBenefitCost());
-    }
-
-    private void benefitDetailView() {
-        System.out.println(Phrase.BENEFIT);
-
-        if (cost.getBenefitCost() == 0 || !cost.isEventTarget()) {
-            OutputView.noBenefit(cost.getTotalCost());
-            return;
-        }
-
-        DiscountView.weekdayDiscount(cost.getWeekdayDiscount());
-        DiscountView.weekendDiscount(cost.getWeekendDiscount());
-        DiscountView.specialDiscount(cost.getSpecialDiscount());
-        DiscountView.christmasDiscount(cost.getChristmasDiscount());
-        DiscountView.freeGiftDiscount(cost.getFreeGiftDiscount());
-        OutputView.benefitCost(cost.getBenefitCost());
-        totalCostAfterDiscountView();
-        eventBadgeView();
-    }
-
-    public final void eventPlannerView() {
-        totalCostBeforeDiscountView();
-        freeGiftEventView();
-        benefitDetailView();
+    public final void eventBadgeView(final DiscountStatus discountStatus) {
+        OutputView.eventBadge(discountStatus.getTotalDiscount());
     }
 }
