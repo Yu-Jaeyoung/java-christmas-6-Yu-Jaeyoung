@@ -1,12 +1,15 @@
 package christmas.domain;
 
+import christmas.constant.Discount;
 import christmas.constant.Menu;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Cost {
     private final Order order;
-    private final int totalCostBeforeDiscount;
+    private final int totalCost;
+    private final Map<Discount, Integer> discount = new HashMap<>();
     private int christmasDiscount = 0;
     private int weekendDiscount = 0;
     private int weekdayDiscount = 0;
@@ -15,10 +18,10 @@ public class Cost {
 
     public Cost(final Order order) {
         this.order = order;
-        this.totalCostBeforeDiscount = initializeTotalCostBeforeDiscount(order);
+        this.totalCost = initializeTotalCost(order);
     }
 
-    public final int initializeTotalCostBeforeDiscount(final Order order) {
+    public final int initializeTotalCost(final Order order) {
         int totalCost = 0;
 
         for (final Map.Entry<Menu, Integer> menu : order.getOrderHistory().entrySet()) {
@@ -31,12 +34,20 @@ public class Cost {
         return totalCost;
     }
 
-    public final int getTotalCostBeforeDiscount() {
-        return totalCostBeforeDiscount;
+    public final boolean isFreeGiftTarget() {
+        return totalCost >= 120_000;
+    }
+
+    public final boolean isEventTarget() {
+        return totalCost >= 10_000;
+    }
+
+    public final int getTotalCost() {
+        return totalCost;
     }
 
     public final int getTotalCostAfterDiscount() {
-        return totalCostBeforeDiscount + getBenefitCost() - freeGiftDiscount;
+        return totalCost + getBenefitCost() - freeGiftDiscount;
     }
 
     public final int getChristmasDiscount() {

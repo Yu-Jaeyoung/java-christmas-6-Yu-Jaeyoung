@@ -34,7 +34,7 @@ public class Event {
     }
 
     private void freeGiftDiscount() {
-        if (cost.getTotalCostBeforeDiscount() >= 120_000) {
+        if (cost.isFreeGiftTarget()) {
             cost.applyFreeGiftDiscount();
         }
     }
@@ -47,11 +47,11 @@ public class Event {
     }
 
     private void totalCostBeforeDiscountView() {
-        DiscountView.totalCostBeforeDiscount(cost.getTotalCostBeforeDiscount());
+        DiscountView.totalCostBeforeDiscount(cost.getTotalCost());
     }
 
     private void freeGiftEventView() {
-        if (cost.getTotalCostBeforeDiscount() > 120_000) {
+        if (cost.isFreeGiftTarget()) {
             OutputView.freeGift();
             return;
         }
@@ -70,8 +70,8 @@ public class Event {
     private void benefitDetailView() {
         System.out.println(Phrase.BENEFIT);
 
-        if (cost.getBenefitCost() == 0 || cost.getTotalCostBeforeDiscount() < 10_000) {
-            OutputView.noBenefit(cost.getTotalCostBeforeDiscount());
+        if (cost.getBenefitCost() == 0 || !cost.isEventTarget()) {
+            OutputView.noBenefit(cost.getTotalCost());
             return;
         }
 
