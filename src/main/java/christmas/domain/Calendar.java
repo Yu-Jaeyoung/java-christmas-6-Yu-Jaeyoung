@@ -12,19 +12,15 @@ public final class Calendar {
         this.date = date;
     }
 
-    public int getDate() {
-        return date;
-    }
-
-    public final boolean isWeekend() {
+    public boolean isWeekend() {
         return weekend.contains(this.date);
     }
 
-    public final boolean isStarDay() {
+    public boolean isStarDay() {
         return starDay.contains(this.date);
     }
 
-    public final boolean isChristmasDDay() {
+    public boolean isChristmasDDay() {
         return this.date < 26;
     }
 }

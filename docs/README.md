@@ -350,7 +350,7 @@
   
 
 - doamin
-  - Calendar의 getDate가 적합하게 사용되었는가?
+  - [x] Calendar의 getDate가 적합하게 사용되었는가? → Event 클래스 생성자에 date 추가 진행 예정
   - Cost 클래스의 역할이 적절한가?
   - Cost의 getter를 다른 방법으로 선언하는 법?
   - Cost의 setter 역할을 하는 apply를 다른 방법으로 ?
