@@ -8,12 +8,10 @@ import java.util.Map;
 public class DiscountStatus {
     private final Map<Discount, Integer> discountStatus;
     private final Order order;
-    private final int totalCost;
 
-    public DiscountStatus(final Order order, final int totalCost) {
+    public DiscountStatus(final Order order) {
         this.discountStatus = initializeDiscountStatus();
         this.order = order;
-        this.totalCost = totalCost;
     }
 
     private Map<Discount, Integer> initializeDiscountStatus() {
@@ -64,7 +62,7 @@ public class DiscountStatus {
         return totalDiscount;
     }
 
-    public final int totalPayment() {
-        return this.totalCost + getTotalDiscount();
+    public final int totalPayment(final int totalCost) {
+        return totalCost + getTotalDiscount();
     }
 }
