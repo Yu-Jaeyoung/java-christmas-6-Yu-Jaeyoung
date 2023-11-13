@@ -6,7 +6,7 @@ import christmas.util.Splitter;
 import java.util.HashSet;
 import java.util.Set;
 
-public class MenuException{
+public class OrderException {
 
     public static void blank(final String input) {
         if (input.isBlank()) {

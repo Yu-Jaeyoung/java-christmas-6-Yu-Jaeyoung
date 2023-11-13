@@ -12,8 +12,8 @@ import java.util.Map;
 public class Order {
     private final Map<Menu, Integer> orderHistory;
 
-    public Order(final String menus) {
-        this.orderHistory = orderHistory(menus);
+    public Order(final String order) {
+        this.orderHistory = orderHistory(order);
     }
 
     private Map<Menu, Integer> orderHistory(final String input) {
@@ -56,7 +56,7 @@ public class Order {
         return dessertQuantity;
     }
 
-    public final void orderMenuView() {
-        OutputView.orderMenu(this.orderHistory);
+    public final void orderView() {
+        OutputView.order(this.orderHistory);
     }
 }

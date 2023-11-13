@@ -7,7 +7,7 @@ import christmas.util.Formatter;
 import java.util.Map;
 
 public class OutputView {
-    public static void orderMenu(final Map<Menu, Integer> orderHistory) {
+    public static void order(final Map<Menu, Integer> orderHistory) {
         System.out.println(Phrase.EVENT_PREVIEW);
         System.out.println(Phrase.ORDER_MENU);
 

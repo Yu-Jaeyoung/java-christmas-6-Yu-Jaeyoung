@@ -10,7 +10,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public static String readMenus() {
+    public static String readOrder() {
         System.out.println(Phrase.ASK_ORDER_COUNT);
         return Console.readLine();
     }
