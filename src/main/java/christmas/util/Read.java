@@ -6,23 +6,19 @@ import christmas.view.ExceptionView;
 import christmas.view.InputView;
 
 public class Read {
-    public static int readDate() {
-        final String date = InputView.readDate();
-
+    public static int readDate(String date) {
         try {
             DateValidation.validate(date);
         } catch (IllegalArgumentException illegalArgumentException) {
             ExceptionView.exceptionMessage(illegalArgumentException.getMessage());
 
-            return readDate();
+            return readDate(InputView.readDate());
         }
 
         return Parser.stringToInt(date);
     }
 
-    public static String readOrder() {
-        final String order = InputView.readOrder();
-
+    public static String readOrder(String order) {
         try {
             OrderValidation.validate(order);
             OrderValidation.validateAfterSplitWithComma(order);
@@ -30,7 +26,7 @@ public class Read {
         } catch (IllegalArgumentException illegalArgumentException) {
             ExceptionView.exceptionMessage(illegalArgumentException.getMessage());
 
-            return readOrder();
+            return readOrder(InputView.readOrder());
         }
 
         return order;
