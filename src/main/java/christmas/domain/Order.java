@@ -32,30 +32,6 @@ public class Order {
         return Collections.unmodifiableMap(this.orderHistory);
     }
 
-    public final int getMainQuantity() {
-        int mainQuantity = 0;
-
-        for (final Map.Entry<Menu, Integer> menu : this.orderHistory.entrySet()) {
-            if (menu.getKey().getCourse().equals("main")) {
-                mainQuantity += menu.getValue();
-            }
-        }
-
-        return mainQuantity;
-    }
-
-    public final int getDessertQuantity() {
-        int dessertQuantity = 0;
-
-        for (final Map.Entry<Menu, Integer> menu : this.orderHistory.entrySet()) {
-            if (menu.getKey().getCourse().equals("dessert")) {
-                dessertQuantity += menu.getValue();
-            }
-        }
-
-        return dessertQuantity;
-    }
-
     public final void orderView() {
         OutputView.order(this.orderHistory);
     }

@@ -6,9 +6,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DiscountStatus {
+    private final Calendar calendar;
     private final Map<Discount, Integer> discountStatus;
 
-    public DiscountStatus() {
+    public DiscountStatus(final Calendar calendar) {
+        this.calendar = calendar;
         this.discountStatus = initializeDiscountStatus();
     }
 
@@ -23,25 +25,26 @@ public class DiscountStatus {
     }
 
     public final void applyDiscount(final Discount discount) {
-        if (discount.equals(Discount.SPECIAL) || discount.equals(Discount.FREE_GIFT)) {
+        if (discount.equals(Discount.CHRISTMAS)) {
+            this.discountStatus.put(discount, calendar.christmasDDay());
+        }
+
+        if (discount.equals(Discount.FREE_GIFT)) {
             this.discountStatus.put(discount, 1);
         }
     }
 
-    public final void applyDiscount(final Discount discount, final int date) {
-        if (discount.equals(Discount.CHRISTMAS)) {
-            this.discountStatus.put(discount, date);
-        }
-    }
-
-    public final void applyDiscount(final Discount discount, final Order order) {
-        if (discount.equals(Discount.WEEKDAY)) {
-            this.discountStatus.put(discount, order.getDessertQuantity());
+    public final void applyDiscount(final Cost cost) {
+        if (calendar.isStarDay()) {
+            this.discountStatus.put(Discount.SPECIAL, 1);
         }
 
-        if (discount.equals(Discount.WEEKEND)) {
-            this.discountStatus.put(discount, order.getMainQuantity());
+        if (calendar.isWeekend()) {
+            this.discountStatus.put(Discount.WEEKEND, cost.getDessertQuantity());
+            return;
         }
+
+        this.discountStatus.put(Discount.WEEKDAY, cost.getMainQuantity());
     }
 
     public final int getDiscount(final Discount discount) {

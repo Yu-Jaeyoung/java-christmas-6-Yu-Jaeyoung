@@ -1,18 +1,19 @@
 package christmas.controller;
 
 import christmas.constant.Discount;
+import christmas.constant.Phrase;
+import christmas.domain.Calendar;
 import christmas.domain.DiscountStatus;
 import christmas.util.Formatter;
 import christmas.view.output.DiscountView;
 
 public class DiscountController {
     static final String Benefit = "\n<혜택 내역>\n";
-    static final String NOTHING = "없음\n";
-    static final String BENEFIT_COST = "\n<총혜택 금액>";
+    static final String BENEFIT_COST = "\n<총혜택 금액>\n";
     private final DiscountStatus discountStatus;
 
-    public DiscountController() {
-        this.discountStatus = new DiscountStatus();
+    public DiscountController(final Calendar calendar) {
+        this.discountStatus = new DiscountStatus(calendar);
     }
 
     public final DiscountStatus getDiscountStatus() {
@@ -27,10 +28,10 @@ public class DiscountController {
             }
             return;
         }
-        System.out.printf(NOTHING);
+        System.out.printf(Phrase.NOTHING);
     }
 
     public final void totalDiscountView() {
-        System.out.printf("%s\n%s원\n", BENEFIT_COST, Formatter.decimalFormatter(discountStatus.getTotalDiscount()));
+        System.out.printf("%s%s원\n", BENEFIT_COST, Formatter.decimalFormatter(discountStatus.getTotalDiscount()));
     }
 }

@@ -20,24 +20,19 @@ public class ChristmasPromotionLauncher {
         this.dateController = new DateController(Read.readDate());
         this.orderController = new OrderController(Read.readOrder());
         this.costController = new CostController(orderController.getOrder());
-        this.eventController = new EventController(dateController.getCalendar(), costController.getCost());
-        this.discountController = new DiscountController();
+        this.discountController = new DiscountController(dateController.getCalendar());
+        this.eventController = new EventController(costController.getCost(),discountController.getDiscountStatus());
     }
 
     public void run() {
         dateController.getCalendar().eventPreview();
         orderController.getOrder().orderView();
         costController.getCost().totalCostView();
-        // isEventTarget 아니면, 실행할 필요 없음. 해당 메소드는 Cost 클래스에 존재
-        eventController.getEvent()
-                .weekendOrDayDiscount(discountController.getDiscountStatus(), orderController.getOrder());
-        eventController.getEvent().specialDiscount(discountController.getDiscountStatus());
-        eventController.getEvent().christmasDiscount(discountController.getDiscountStatus());
-        eventController.getEvent().freeGiftDiscount(discountController.getDiscountStatus());
-        eventController.getEvent().freeGiftEventView();
+        eventController.freeGiftEventView();
+        eventController.eventDiscountApply();
         discountController.discountView();
         discountController.totalDiscountView();
-        costController.getCost().totalPayment(discountController.getDiscountStatus().getTotalDiscount());
-        eventController.getEvent().eventBadgeView(discountController.getDiscountStatus());
+        eventController.totalPaymentView();
+        eventController.eventBadgeView();
     }
 }
