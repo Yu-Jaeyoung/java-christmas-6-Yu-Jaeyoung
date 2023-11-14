@@ -42,7 +42,7 @@ public class OrderException {
     public static void noHyphen(final String[] input) {
         for (final String menu : input) {
             if (!menu.contains("-")) {
-                System.out.println(INVALID_ORDER);
+                throw new IllegalArgumentException(INVALID_ORDER);
             }
         }
     }
@@ -50,7 +50,7 @@ public class OrderException {
     public static void nothingBeforeHyphen(final String[] input) {
         for (final String menu : input) {
             if (menu.matches("^-.*")) {
-                System.out.println(INVALID_ORDER);
+                throw new IllegalArgumentException(INVALID_ORDER);
             }
         }
     }
