@@ -1,4 +1,4 @@
-package christmas.launcher;
+package christmas;
 
 import christmas.controller.CostController;
 import christmas.controller.DateController;
