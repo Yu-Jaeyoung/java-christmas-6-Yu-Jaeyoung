@@ -14,6 +14,10 @@ public class DiscountStatus {
         this.discountStatus = initializeDiscountStatus();
     }
 
+    public final void eventPreview() {
+        calendar.eventPreview();
+    }
+
     private Map<Discount, Integer> initializeDiscountStatus() {
         final Map<Discount, Integer> discountStatus = new HashMap<>();
 

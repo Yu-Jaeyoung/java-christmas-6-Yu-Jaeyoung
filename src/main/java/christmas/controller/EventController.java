@@ -11,6 +11,10 @@ public class EventController {
         this.event = new Event(cost, discountStatus);
     }
 
+    public final void eventView() {
+        event.eventView();
+    }
+
     public final void eventDiscountApply() {
         event.eventDiscountApply();
     }

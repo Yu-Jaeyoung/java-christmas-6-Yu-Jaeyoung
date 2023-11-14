@@ -9,25 +9,21 @@ import christmas.util.Read;
 
 public class ChristmasPromotionLauncher {
     static final String WELCOME = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.\n";
-    private final DateController dateController;
-    private final OrderController orderController;
-    private final CostController costController;
     private final EventController eventController;
     private final DiscountController discountController;
 
     public ChristmasPromotionLauncher() {
         System.out.printf(WELCOME);
-        this.dateController = new DateController(Read.readDate());
-        this.orderController = new OrderController(Read.readOrder());
-        this.costController = new CostController(orderController.getOrder());
+        final DateController dateController = new DateController(Read.readDate());
+        final OrderController orderController = new OrderController(Read.readOrder());
+        final CostController costController = new CostController(orderController.getOrder());
         this.discountController = new DiscountController(dateController.getCalendar());
-        this.eventController = new EventController(costController.getCost(),discountController.getDiscountStatus());
+        this.eventController = new EventController(costController.getCost(), discountController.getDiscountStatus());
     }
 
     public void run() {
-        dateController.getCalendar().eventPreview();
-        orderController.getOrder().orderView();
-        costController.getCost().totalCostView();
+        discountController.eventPreview();
+        eventController.eventView();
         eventController.freeGiftEventView();
         eventController.eventDiscountApply();
         discountController.discountView();

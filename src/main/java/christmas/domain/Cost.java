@@ -27,6 +27,10 @@ public class Cost {
         return totalCost;
     }
 
+    public final void orderView() {
+        order.orderView();
+    }
+
     public final boolean isFreeGiftTarget() {
         return totalCost >= 120_000;
     }

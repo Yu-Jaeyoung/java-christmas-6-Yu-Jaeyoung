@@ -342,11 +342,11 @@
 
 
 - Phrase
-  - 1회성 구문들 사용되는 곳으로 옮기기
+  - [x] 1회성 구문들 사용되는 곳으로 옮기기
   
 
 - controller
-  - controller의 역할 다시 생각해보기
+  - [x] controller의 역할 다시 생각해보기
   
 
 - doamin
@@ -354,9 +354,4 @@
   - [x] Cost 클래스의 역할이 적절한가? → DiscountStatus 클래스로 분리
   - [x] Cost의 getter를 다른 방법으로 선언하는 법? → 현재는 getter가 불가피 한것으로 판단됨.
   - [x] Cost의 setter 역할을 하는 apply를 다른 방법으로? → DiscountStatus 클래스로 기능 옮김 
-  - [x] Cost의 discount 관련 변수를 다르게?  →  Discount Enum 선언 
-  - Event의 benefitDetailView() 역할 덜기
-  
-
-- validation
-  - Date, Menu의 Validation의 역할이 올바른가?
+  - [x] Cost의 discount 관련 변수를 다르게?  →  Discount Enum 선언

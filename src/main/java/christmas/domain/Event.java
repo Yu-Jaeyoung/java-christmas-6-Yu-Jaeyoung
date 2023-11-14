@@ -12,6 +12,11 @@ public class Event {
         this.discountStatus = discountStatus;
     }
 
+    public final void eventView() {
+        cost.orderView();
+        cost.totalCostView();
+    }
+
     public final void eventDiscountApply() {
         if (cost.isEventTarget()) {
             discountStatus.applyDiscount(Discount.CHRISTMAS);

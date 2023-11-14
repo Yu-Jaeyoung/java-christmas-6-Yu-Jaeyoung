@@ -20,6 +20,10 @@ public class DiscountController {
         return discountStatus;
     }
 
+    public final void eventPreview() {
+        discountStatus.eventPreview();
+    }
+
     public final void discountView() {
         System.out.printf(Benefit);
         if (discountStatus.getTotalDiscount() != 0) {
