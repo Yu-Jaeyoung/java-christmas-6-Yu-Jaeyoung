@@ -21,7 +21,7 @@ class ParserTest {
 
     @DisplayName("Integer로 변환할 수 없는 입력은 예외 발생")
     @ParameterizedTest
-    @CsvSource({"abc", "1.23", "가나다"})
+    @ValueSource(strings = {"abc", "1.23", "가나다"})
     void invalidStringToInt(final String input) {
         assertThatThrownBy(() -> Parser.stringToInt(input)).isInstanceOf(NumberFormatException.class);
     }
@@ -40,7 +40,7 @@ class ParserTest {
 
     @DisplayName("없는 메뉴 입력은 null을 반환")
     @ParameterizedTest
-    @CsvSource({"자장면", "탕수육", "떡볶이"})
+    @ValueSource(strings = {"자장면", "탕수육", "떡볶이"})
     void invalidMenuName(final String input) {
         Menu result = Parser.stringToMenu(input);
         assertThat(result).isEqualTo(null);
