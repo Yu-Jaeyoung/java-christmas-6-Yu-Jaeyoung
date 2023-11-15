@@ -13,7 +13,7 @@ class OrderValidationTest {
     @DisplayName("빈 공백 입력 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"", " ", " 제로콜라-1", "제 로콜라-1", "제로 콜라-1", "제로콜라 -1", " 제로 콜라 -1"})
-    void blankAndNotANumberException(String input) {
+    void blankAndNotANumberException(final String input) {
         assertThatThrownBy(() -> OrderValidation.validate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -21,7 +21,7 @@ class OrderValidationTest {
     @DisplayName("빈 공백 및 숫자가 아닌 입력 예외 처리 시 출력 메시지")
     @ParameterizedTest
     @ValueSource(strings = {"", " ", " 제로콜라-1", "제 로콜라-1", "제로 콜라-1", "제로콜라 -1", " 제로 콜라 -1"})
-    void blankAndNotANumberExceptionMessage(String input) {
+    void blankAndNotANumberExceptionMessage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_ORDER);
@@ -30,7 +30,7 @@ class OrderValidationTest {
     @DisplayName(" , 앞 혹은 뒤에 아무 것도 없는 경우 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라-1,", ",제로콜라-1", ","})
-    void nothingBeforeAndAfterComma(String input) {
+    void nothingBeforeAndAfterComma(final String input) {
         assertThatThrownBy(() -> OrderValidation.validate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -38,7 +38,7 @@ class OrderValidationTest {
     @DisplayName(" , 앞 혹은 뒤에 아무 것도 없는 경우 예외 처리 시 출력 메시지")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라-1,", ",제로콜라-1", ","})
-    void nothingBeforeAndAfterCommaMessage(String input) {
+    void nothingBeforeAndAfterCommaMessage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_ORDER);
@@ -47,7 +47,7 @@ class OrderValidationTest {
     @DisplayName(" - 없는 경우 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라1"})
-    void noHyphen(String input) {
+    void noHyphen(final String input) {
         assertThatThrownBy(() -> OrderValidation.validate(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -55,7 +55,7 @@ class OrderValidationTest {
     @DisplayName(" - 없는 경우 예외 처리 시 출력 메시지")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라1"})
-    void noHyphenMessage(String input) {
+    void noHyphenMessage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validate(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_ORDER);
@@ -64,7 +64,7 @@ class OrderValidationTest {
     @DisplayName(" , 로 분리된 뒤 - 없는 경우 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라-1,타파스1", "제로콜라-1,타파스-1,레드와인1"})
-    void noHyphenAfterSplitWithComma(String input) {
+    void noHyphenAfterSplitWithComma(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithComma(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -72,7 +72,7 @@ class OrderValidationTest {
     @DisplayName(" , 로 분리된 뒤 - 없는 경우 예외 처리 시 출력 메시지")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라-1,타파스1", "제로콜라-1,타파스-1,레드와인1"})
-    void noHyphenAfterSplitWithCommaMessage(String input) {
+    void noHyphenAfterSplitWithCommaMessage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithComma(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_ORDER);
@@ -81,7 +81,7 @@ class OrderValidationTest {
     @DisplayName(" - 앞 혹은 뒤에 아무 것도 없는 경우 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라-1,타파스-", "타파스-1,-1"})
-    void nothingBeforeAndAfterHyphen(String input) {
+    void nothingBeforeAndAfterHyphen(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithComma(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -89,7 +89,7 @@ class OrderValidationTest {
     @DisplayName(" - 앞 혹은 뒤에 아무 것도 없는 경우 예외 처리 시 출력 메시지")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라-1,타파스-", "타파스-1,-1"})
-    void nothingBeforeAndAfterHyphenMessage(String input) {
+    void nothingBeforeAndAfterHyphenMessage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithComma(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_ORDER);
@@ -98,7 +98,7 @@ class OrderValidationTest {
     @DisplayName("중복된 메뉴 주문 시 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"시저샐러드-1,시저샐러드-1", "타파스-1,타파스-1", "타파스-1,바비큐립-1,타파스-1"})
-    void duplicatedMenu(String input) {
+    void duplicatedMenu(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithHyphen(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -106,7 +106,7 @@ class OrderValidationTest {
     @DisplayName("중복된 메뉴 주문 시 예외 처리 시 출력 메시지")
     @ParameterizedTest
     @ValueSource(strings = {"시저샐러드-1,시저샐러드-1", "타파스-1,타파스-1", "타파스-1,바비큐립-1,타파스-1"})
-    void duplicatedMenuMessage(String input) {
+    void duplicatedMenuMessage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithHyphen(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_ORDER);
@@ -115,7 +115,7 @@ class OrderValidationTest {
     @DisplayName("음료만 주문 시 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라-1,제로콜라-1", "레드와인-1,레드와인-1", "레드와인-1,제로콜라-1,레드와인-1"})
-    void onlyBeverage(String input) {
+    void onlyBeverage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithHyphen(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -123,7 +123,7 @@ class OrderValidationTest {
     @DisplayName("음료만 주문 시 예외 처리 시 출력 메시지")
     @ParameterizedTest
     @ValueSource(strings = {"제로콜라-1,제로콜라-1", "레드와인-1,레드와인-1", "레드와인-1,제로콜라-1,레드와인-1"})
-    void onlyBeverageMessage(String input) {
+    void onlyBeverageMessage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithHyphen(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_ORDER);
@@ -132,7 +132,7 @@ class OrderValidationTest {
     @DisplayName("메뉴에 없는 것 주문 시 예외 처리")
     @ParameterizedTest
     @ValueSource(strings = {"환타-1", "바비큐립-1,우테코합격실패주-3", "타파스-1,만두-2,시저샐러드-1"})
-    void notInMenu(String input) {
+    void notInMenu(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithHyphen(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -140,7 +140,7 @@ class OrderValidationTest {
     @DisplayName("메뉴에 없는 것 주문 시 예외 처리 시 출력 메시지")
     @ParameterizedTest
     @ValueSource(strings = {"환타-1", "바비큐립-1,우테코합격실패주-3", "타파스-1,만두-2,시저샐러드-1"})
-    void notInMenuMessage(String input) {
+    void notInMenuMessage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithHyphen(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_ORDER);
@@ -149,7 +149,7 @@ class OrderValidationTest {
     @DisplayName("숫자가 범위 내가 아닌 경우 에러 발생")
     @ParameterizedTest
     @ValueSource(strings = {"바비큐립-21", "바비큐립-1,티본스테이크-30", "시저샐러드-1,타파스-2,바비큐립-25"})
-    void notInRangeNumber(String input) {
+    void notInRangeNumber(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithHyphen(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -157,7 +157,7 @@ class OrderValidationTest {
     @DisplayName("숫자가 범위 내가 아닌 경우 에러 발생 시 출력 메시지")
     @ParameterizedTest
     @ValueSource(strings = {"바비큐립-21", "바비큐립-1,티본스테이크-30", "시저샐러드-1,타파스-2,바비큐립-25"})
-    void notInRangeNumberMessage(String input) {
+    void notInRangeNumberMessage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithHyphen(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_ORDER);
@@ -166,7 +166,7 @@ class OrderValidationTest {
     @DisplayName("메뉴의 개수 합이 20개가 넘으면 에러 발생")
     @ParameterizedTest
     @ValueSource(strings = {"바비큐립-15,타파스-6", "레드와인-1,제로콜라-17,바비큐립-3"})
-    void menuCountOver(String input) {
+    void menuCountOver(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithHyphen(input))
                 .isInstanceOf(IllegalArgumentException.class);
     }
@@ -174,7 +174,7 @@ class OrderValidationTest {
     @DisplayName("메뉴의 개수 합이 20개가 넘으면 에러 발생 시 출력 메시지")
     @ParameterizedTest
     @ValueSource(strings = {"바비큐립-15,타파스-6", "레드와인-1,제로콜라-17,바비큐립-3"})
-    void menuCountOverMessage(String input) {
+    void menuCountOverMessage(final String input) {
         assertThatThrownBy(() -> OrderValidation.validateAfterSplitWithHyphen(input))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(INVALID_ORDER);
@@ -183,7 +183,7 @@ class OrderValidationTest {
     @ParameterizedTest
     @ValueSource(strings = {"해산물파스타-2,레드와인-1,초코케이크-1", "티본스테이크-1,바비큐립-1,초코케이크-2,제로콜라-1", "타파스-1,제로콜라-1"})
     @DisplayName("정상적인 메뉴 입력 테스트")
-    void validDateException(String input) {
+    void validDateException(final String input) {
         SoftAssertions softAssertions = new SoftAssertions();
         softAssertions.assertThatCode(() -> OrderValidation.validate(input)).doesNotThrowAnyException();
         softAssertions.assertThatCode(() -> OrderValidation.validateAfterSplitWithComma(input))
